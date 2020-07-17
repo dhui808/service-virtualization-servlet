@@ -8,7 +8,6 @@
   <packaging>pom</packaging>
 
   <modules>
-     <module>webservicemockutil</module>
-     <module>webservicemockserver</module>
+     <module>servicevirtualizationservlet</module>
    </modules>
 </project>

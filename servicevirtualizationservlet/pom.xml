@@ -11,10 +11,10 @@
 	</parent>
 
 	<groupId>mobilebanking</groupId>
-	<artifactId>webservicemockserver</artifactId>
+	<artifactId>servicevirtualizationservlet</artifactId>
 	<version>0.0.1</version>
-	<name>webservicemockserver</name>
-	<description>Mobile Banking Server Mock project for Spring Boot</description>
+	<name>servicevirtualizationservlet</name>
+	<description>Mobile Banking Service Virtualization Servlet Server</description>
 
 	<properties>
 		<java.version>1.8</java.version>
