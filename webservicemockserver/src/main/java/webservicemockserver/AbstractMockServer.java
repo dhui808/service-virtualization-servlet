@@ -23,7 +23,7 @@ import org.springframework.beans.factory.annotation.Value;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import webservicemockutil.MockData;
+import servicevirtualizationutils.MockData;
 
 public abstract class AbstractMockServer extends HttpServlet {
 
