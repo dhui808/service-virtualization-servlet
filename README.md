@@ -26,7 +26,7 @@ selects the scenario he or she wants to test first, then proceed to test it. It 
 assurance.
 
 ## Dependency
-This project depends on my other project [mobileweb-angular-mvc-poc](https://github.com/dhui808/mobileweb-angular-mvc-poc).
+This project depends on my other project [service-virtualization-data](https://github.com/dhui808/service-virtualization-data).
 
 ## Application Configuration
 There are two configuration files: application.properties and logback-spring.xml, under resources folder.
