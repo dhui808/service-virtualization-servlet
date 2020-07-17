@@ -1,6 +1,6 @@
 FROM openjdk:8-jdk-alpine
 VOLUME /tmp
-ADD target/webservicemockserver-0.0.1.jar app.jar
+ADD target/servicevirtualizationservlet-0.0.1.jar app.jar
 COPY target/servicevirtualizationdata /usr/service-virtualization-data/servicevirtualizationdata
 COPY target/classes/logback-spring.xml /usr/springbootlogging/logback-spring.xml
 RUN mkdir /usr/springbootlogging/logs
