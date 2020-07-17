@@ -8,10 +8,36 @@ This projects illustrates the usages fo the following technologies:
 
 
 ## Full Service Virtualization
-All services  are virtualized to support UI layer testing for all business and technical scenarios.
+This application provides the service virtualization to test the mobile web banking PoC projects:
+[mobileweb-angular-mvc-poc](https://github.com/dhui808/mobileweb-angular-mvc-poc)
+and [mobileweb-angular-redux-poc](https://github.com/dhui808/mobileweb-angular-redux-poc).
+
+The design of of this tool is completely different from any of the Service Virtualization tools
+currently available in the market. It allows the user to test multiple scenarios for the same
+transaction without the need for the user to configure the services or use any specific input data.
+The user simply selects the scenario he or she wants to test first, 
+
+
+This application provides the service virtualization to test the mobile web banking PoC projects: mobileweb-angular-mvc-poc and mobileweb-angular-redux-poc.
+
+The design of of this tool is completely different from any of the Service Virtualization tools currently available in the market. It allows the user to 
+test multiple scenarios for the same transaction without the need for the user to configure the services or use any specific input data. The user simply 
+selects the scenario he or she wants to test first, then proceed to test it. It greatly increases the developer productivity and is invaluable for quality 
+assurance.
 
 ## Dependency
 This project depends on my other project [mobileweb-angular-mvc-poc](https://github.com/dhui808/mobileweb-angular-mvc-poc).
+
+## Application Configuration
+There are two configuration files: application.properties and logback-spring.xml, under resources folder.
+
+The application.properties looks like below:
+
+webservicemockdata.home=/usr/github/webservicemockdata server.servlet.context-path=/banking logging.config=file:/usr/springbootlogging/logback-spring.xml
+
+The logback-spring.xml must be copied to the location as specified by logging.config property in application.properties.
+
+The content of project webservicemockdata must be copied to the location as specified by webservicemockdata.home property in application.properties.
 
 ## Build
 cd webservicemockserver
