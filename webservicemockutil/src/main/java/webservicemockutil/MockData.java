@@ -22,15 +22,17 @@ public class MockData {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MockData.class);
 	
-	//private final static String mockDataHome = System.getProperty("webservicemockdata.home"); 
 	private static String mockDataHome;
 	private String mockServerName;
 	private Map<String, Long> mappingFileTimestampMap = new HashMap<String, Long>();
+	
 	//mapping folderPath, request URL, response filename
 	private Map<String, Map<String, String>> jsonMappingMap = new HashMap<String, Map<String, String>>();
+	
 	//default mappings aggregates mappings from all mapping files and maps each request url to a response
 	//file under one of the "default" folders
 	private Map<String, String> defaultMappingMap = new HashMap<String, String>();
+	
 	private List<String> alternateResponseFiles;
 	private String entryPageUrl;
 	

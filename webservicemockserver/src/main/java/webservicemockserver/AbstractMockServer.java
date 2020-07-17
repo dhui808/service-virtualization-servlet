@@ -180,7 +180,7 @@ public abstract class AbstractMockServer extends HttpServlet {
 		String flow = req.getParameter("flow");
 		String scenario = req.getParameter("scenario");
 		
-		logger.debug(mockData.getMockServerName() + " flow:" + flow + " Scenario:" + scenario);
+		logger.debug(mockServerName + " flow:" + flow + " Scenario:" + scenario);
 		logger.debug("entryPageUrl:" + mockData.getEntryPageUrl());
 		
 		if (null == flow) return false;
