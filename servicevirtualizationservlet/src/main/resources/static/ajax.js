@@ -42,7 +42,7 @@ function retrieveEntryPageURL() {
 	
 	if (!entryPageUrlCookie) {
 		console.debug("entryPageUrl cookie is not loaded yet.");
-		var uri = location.pathname + "rest/retrieveEntryPageURL"
+		var uri = location.pathname.replace(/\/$/, "") + "/rest/retrieveEntryPageURL"
 		makeAjaxCall(uri, retrieveEntryPageURLCallback);
 	} else {
 		retrieveEntryPageURLCallback({entryPageUrl: entryPageUrlCookie});
