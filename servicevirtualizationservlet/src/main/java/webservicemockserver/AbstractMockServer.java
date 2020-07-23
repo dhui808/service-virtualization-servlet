@@ -131,7 +131,7 @@ public abstract class AbstractMockServer extends HttpServlet {
 		String config = req.getPathInfo();
 		
 		//Handles configuration POST request
-		if ("/_config".equals(config)) {
+		if ("/config".equals(config)) {
 			
 			doConfig(req, resp);
 			

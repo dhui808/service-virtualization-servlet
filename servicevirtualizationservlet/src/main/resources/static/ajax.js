@@ -6,7 +6,7 @@
  */
 var contextpath = location.pathname.replace(/\/$/, "");
 var restpath = '/rest/';
-var configpath= '_config';
+var configpath= 'config';
 /**
  * Invoked when the setup page opens.
  * @returns
@@ -25,7 +25,8 @@ function init() {
 function makeAjaxCall(requestURI, callback) {
 	var xhr = new XMLHttpRequest();
 	xhr.responseType = 'json';
-	xhr.open('POST', requestURI);
+	xhr.open('POST', requestURI, true);
+	xhr.setRequestHeader('Content-type', 'application/json');
 	xhr.onload = function() {
 	    if (xhr.status === 200) {
 	        
