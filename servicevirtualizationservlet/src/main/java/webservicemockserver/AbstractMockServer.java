@@ -31,13 +31,18 @@ public abstract class AbstractMockServer extends HttpServlet {
 	
 	private static final long serialVersionUID = 5495230795670132443L;
 	protected MockData mockData;
-	@Value("${servicevirtualizationdata.home}")
+	@Value("${servicevirtualizationdata_home}")
 	private String mockDataHome;
 	private String mockServerName;
 	
 	protected AbstractMockServer(String mockServerName) {
 
 		this.mockServerName = mockServerName;
+	}
+	
+	public void init() {
+		System.out.println("mockDataHome="+mockDataHome);
+		this.mockData = MockData.getMockData(mockServerName, mockDataHome);
 	}
 	
 	protected void doOptions(HttpServletRequest req,
@@ -52,12 +57,39 @@ public abstract class AbstractMockServer extends HttpServlet {
             HttpServletResponse resp)
             throws ServletException, IOException {
 		
-		createMockData();
+		doPost(req, resp);
 		
-		String pathInfo = req.getPathInfo();
+//		createMockData();
+//		
+//		String pathInfo = req.getPathInfo();
+//		
+//		// Handles retrieveEntryPageURL request
+//		if ("/retrieveEntryPageURL".equals(pathInfo)) {
+//			handleRetrieveEntryPageURL(resp);
+//			
+//			return;
+//		}
+//		
+//		// Handle other requests - by default, it is the selecting flow and scenario.
+//		boolean isSetFlow = addFlowScenarioCookies(req, resp);
+//		if (!isSetFlow) {
+//			//normal rest GET request
+//			String respFilePath = findResponseFilePath(req, resp, "_GET");
+//
+//			populateResponse(req, resp, respFilePath);
+//		}
+	}
+	
+	// Handle retrieveEntryPageURL, selecting flow/scenario
+	// Previously handled by doGet in Servlet-based service
+	private void doConfig(HttpServletRequest req,
+            HttpServletResponse resp)
+            throws ServletException, IOException {
 		
+		String retrieveEntryPageURL = req.getParameter("retrieveEntryPageURL");
+
 		// Handles retrieveEntryPageURL request
-		if ("/retrieveEntryPageURL".equals(pathInfo)) {
+		if (null != retrieveEntryPageURL) {
 			handleRetrieveEntryPageURL(resp);
 			
 			return;
@@ -65,12 +97,6 @@ public abstract class AbstractMockServer extends HttpServlet {
 		
 		// Handle other requests - by default, it is the selecting flow and scenario.
 		boolean isSetFlow = addFlowScenarioCookies(req, resp);
-		if (!isSetFlow) {
-			//normal rest GET request
-			String respFilePath = findResponseFilePath(req, resp, "_GET");
-
-			populateResponse(req, resp, respFilePath);
-		}
 	}
 	
 	private void handleRetrieveEntryPageURL(HttpServletResponse resp) throws IOException {
@@ -92,8 +118,6 @@ public abstract class AbstractMockServer extends HttpServlet {
             HttpServletResponse resp)
             throws ServletException, IOException {
 		
-		createMockData();
-		
 		String respFilePath = findResponseFilePath(req, resp, "_PUT");
 
 		populateResponse(req, resp, respFilePath);
@@ -104,27 +128,19 @@ public abstract class AbstractMockServer extends HttpServlet {
             HttpServletResponse resp)
             throws ServletException, IOException {
 		
-		createMockData();
+		String config = req.getPathInfo();
+		
+		//Handles configuration POST request
+		if ("/_config".equals(config)) {
+			
+			doConfig(req, resp);
+			
+			return;
+		}
 		
 		String respFilePath = findResponseFilePath(req, resp, "");
 
 		populateResponse(req, resp, respFilePath);
-	}
-	
-	private void createMockData() {
-	
-		if (null != mockData) {
-			return;
-		}
-		
-		synchronized(this) {
-			
-			if (null != mockData) {
-				return;
-			}
-			
-			mockData = MockData.getMockData(mockServerName, mockDataHome);
-		}
 	}
 	
 	protected Map<String, String> getFlowScenarioMap(HttpServletRequest req) {

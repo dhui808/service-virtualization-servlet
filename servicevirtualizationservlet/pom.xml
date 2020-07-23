@@ -21,28 +21,13 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<docker.image.prefix>yourdockerid</docker.image.prefix>
-		<servicevirtualizationdata.home>/usr/service-virtualization-data/servicevirtualizationdata</servicevirtualizationdata.home>
+		<servicevirtualizationdata_home>/usr/service-virtualization-data/servicevirtualizationdata</servicevirtualizationdata_home>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-tomcat</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
 		</dependency>
 
 		<dependency>
@@ -76,7 +61,7 @@
 						<configuration>
 							<target name="copy servicevirtualizationdata folder to web project">
 								<copy todir="${project.basedir}/target/servicevirtualizationdata">
-									<fileset dir="${servicevirtualizationdata.home}"
+									<fileset dir="${servicevirtualizationdata_home}"
 										excludes=".settings/,.project">
 									</fileset>
 								</copy>

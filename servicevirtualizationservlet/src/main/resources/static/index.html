@@ -2,9 +2,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Web Service Mock Servers</title>
+<title>Service Virtaulization UI</title>
 <script type="text/javascript" src="ajax.js"></script>
-<link href="/banking/css.css" rel="stylesheet"/>
+<link href="css.css" rel="stylesheet"/>
 </head>
 <body>
 
@@ -49,10 +49,10 @@ In this project, the four test scenarios in a login flow for a banking web appli
 
 <p><b>Test Scenarios:</b></p>
 <ol>
-<li><a href="#" onclick="selectFlowScenario('/banking/rest/?flow=login&scenario=default')">Login successful, no MFA, Account Detail successful</a></li>
-<li><a href="#" onclick="selectFlowScenario('/banking/rest/?flow=login&scenario=login-failed')">Login failed</a></li>
-<li><a href="#" onclick="selectFlowScenario('/banking/rest/?flow=login&scenario=account-details-failed')">Login successful, no MFA, Account Details failed</a></li>
-<li><a href="#" onclick="selectFlowScenario('/banking/rest/?flow=login&scenario=mfa')">Login successful, with MFA, Account Detail successful</a></li>
+<li><a href="#" onclick="selectFlowScenario('flow=login&scenario=default')">Login successful, no MFA, Account Detail successful</a></li>
+<li><a href="#" onclick="selectFlowScenario('flow=login&scenario=login-failed')">Login failed</a></li>
+<li><a href="#" onclick="selectFlowScenario('flow=login&scenario=account-details-failed')">Login successful, no MFA, Account Details failed</a></li>
+<li><a href="#" onclick="selectFlowScenario('flow=login&scenario=mfa')">Login successful, with MFA, Account Detail successful</a></li>
 </ol>
 </div>
 
