@@ -33,6 +33,8 @@ public abstract class AbstractMockServer extends HttpServlet {
 	protected MockData mockData;
 	@Value("${servicevirtualizationdata_home}")
 	private String mockDataHome;
+	@Value("${configpath}")
+	private String configpath;
 	private String mockServerName;
 	
 	protected AbstractMockServer(String mockServerName) {
@@ -131,7 +133,7 @@ public abstract class AbstractMockServer extends HttpServlet {
 		String config = req.getPathInfo();
 		
 		//Handles configuration POST request
-		if ("/config".equals(config)) {
+		if (configpath.equals(config)) {
 			
 			doConfig(req, resp);
 			
@@ -139,7 +141,7 @@ public abstract class AbstractMockServer extends HttpServlet {
 		}
 		
 		String respFilePath = findResponseFilePath(req, resp, "");
-
+logger.debug("respFilePath=" + respFilePath);
 		populateResponse(req, resp, respFilePath);
 	}
 	
