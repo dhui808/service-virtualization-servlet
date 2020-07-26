@@ -52,7 +52,10 @@ mvn clean install -Pdocker
 ## Push the image to Docker Hub registry
 mvn deploy -Pdocker
 
-## Run application locally
+## Start server from command line - Windows
+start.cmd
+
+## Start server from command line - Unix/Linux
 ./start.sh
 
 ## Run Docker image with Fabric8
