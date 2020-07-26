@@ -43,7 +43,8 @@ in application.properties.
 
 ## Build
 cd servicevirtualizationservlet
-mvn clean package
+
+mvn clean install
 
 ## Build Docker image
 mvn clean install -Pdocker
@@ -55,7 +56,7 @@ mvn deploy -Pdocker
 ./start.sh
 
 ## Run Docker image with Fabric8
-mvn integration-test -Pfarbric
+mvn install -Pfabric8
 
 ## Run Docker image with Docker directly
 docker run -d -p 8080:8080 -p 5005:5005 -t dannyhui/servicevirtualizationservlet
