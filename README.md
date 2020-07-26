@@ -26,7 +26,12 @@ selects the scenario he or she wants to test first, then proceed to test it. It 
 assurance.
 
 ## Dependency
-This project depends on my other project [service-virtualization-data](https://github.com/dhui808/service-virtualization-data).
+
+This project depends on my two other projects:
+
+[service virtualization UI application](https://github.com/dhui808/service-virtualization-ui)
+
+[service virtualization data](https://github.com/dhui808/service-virtualization-data)
 
 ## Application Configuration
 There are two configuration files: application.properties and logback-spring.xml, under resources folder.
