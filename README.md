@@ -1,4 +1,4 @@
-# Cloud-ready Mobile Banking with Virtualized Services based on Servlet
+# Service Virtualization with Servlet
 
 ## Technology Stack
 This projects illustrates the usages fo the following technologies:
@@ -8,22 +8,15 @@ This projects illustrates the usages fo the following technologies:
 
 
 ## Full Service Virtualization
-This application provides the service virtualization to test the mobile web banking PoC projects:
+This application provides the service virtualization to test the mobile web banking UI projects:
 [mobileweb-angular-mvc-poc](https://github.com/dhui808/mobileweb-angular-mvc-poc)
 and [mobileweb-angular-redux-poc](https://github.com/dhui808/mobileweb-angular-redux-poc).
 
-The design of of this tool is completely different from any of the Service Virtualization tools
-currently available in the market. It allows the user to test multiple scenarios for the same
-transaction without the need for the user to configure the services or use any specific input data.
-The user simply selects the scenario he or she wants to test first, 
-
-
-This application provides the service virtualization to test the mobile web banking PoC projects: mobileweb-angular-mvc-poc and mobileweb-angular-redux-poc.
-
-The design of of this tool is completely different from any of the Service Virtualization tools currently available in the market. It allows the user to 
-test multiple scenarios for the same transaction without the need for the user to configure the services or use any specific input data. The user simply 
-selects the scenario he or she wants to test first, then proceed to test it. It greatly increases the developer productivity and is invaluable for quality 
-assurance.
+The design of of this tool is completely different from any of the Service Virtualization tools currently 
+available in the market. It allows the user to test multiple scenarios for the same transaction without 
+the need for the user to configure the services or use any specific input data. The user simply selects 
+the scenario he or she wants to test first, then proceed to test it.  This approach simple and intuitive.
+It greatly increases the developer productivity and is invaluable for quality assurance.
 
 ## Dependency
 
@@ -38,24 +31,34 @@ There are two configuration files: application.properties and logback-spring.xml
 
 The application.properties looks like below:
 
-webservicemockdata.home=/usr/github/webservicemockdata server.servlet.context-path=/banking logging.config=file:/usr/springbootlogging/logback-spring.xml
+servicevirtualizationdata_home=/usr/service-virtualization-data/servicevirtualizationdata
+server.servlet.context-path=/banking 
+logging.config=file:/usr/springbootlogging/logback-spring.xml
+configpath=/config
 
 The logback-spring.xml must be copied to the location as specified by logging.config property in application.properties.
 
-The content of project webservicemockdata must be copied to the location as specified by webservicemockdata.home property in application.properties.
+The content of project webservicemockdata must be copied to the location as specified by webservicemockdata.home property
+in application.properties.
 
 ## Build
-cd webservicemockserver
+cd servicevirtualizationservlet
 mvn clean package
 
-## Run locally
+## Build Docker image
+mvn clean install -Pdocker
+
+## Push the image to Docker Hub registry
+mvn deploy -Pdocker
+
+## Run application locally
 ./start.sh
 
-## Run locally with Spring Boot
-./mvnw clean spring-boot:run
+## Run Docker image with Fabric8
+mvn integration-test -Pfarbric
 
-## Run Docker image
-docker run -d -p 8080:8080 -p 5005:5005 -t yourdockerid/webservicemockserver
+## Run Docker image with Docker directly
+docker run -d -p 8080:8080 -p 5005:5005 -t dannyhui/servicevirtualizationservlet
 
 ## Stop and kill Docker container
 docker ps\
@@ -71,26 +74,26 @@ oc login --insecure-skip-tls-verify --server=https://master.na311.openshift.open
 Create OpenShift project myproject\
 oc new-project myproject
 
-Create an application from Docker image docker.io/yourdockerid/webservicemockserver\
-oc new-app docker.io/yourdockerid/webservicemockserver --name webservicemockserver
+Create an application from Docker image docker.io/yourdockerid/servicevirtualizationservlet\
+oc new-app docker.io/yourdockerid/servicevirtualizationservlet --name servicevirtualizationservlet
 
 Expose your server at port 8080\
-oc expose dc/webservicemockserver --port=8080
+oc expose dc/servicevirtualizationservlet --port=8080
 
 Create a route:\
-oc expose service/webservicemockserver
+oc expose service/servicevirtualizationservlet
 
 Import Docker image:\
-oc import-image webservicemockserver
+oc import-image servicevirtualizationservlet
 
 Create ConfigMap for the Spring logging configuration file:\
 oc create configmap springbootlogconfig --from-file=/usr/springbootlogging/logback-spring.xml
 
 oc get pods -w -n lab3-product-catalog-dc
 
-oc get route webservicemockserver
+oc get route servicevirtualizationservlet
 
 From the route from the above command, point your browser at the corresponding URL. A sample browser URL should look like below:
 
-http://webservicemockserver-lab3-product-catalog-dc.apps.na311.openshift.opentlc.com/banking/
+http://servicevirtualizationservlet-lab3-product-catalog-dc.apps.na311.openshift.opentlc.com/banking/
  
