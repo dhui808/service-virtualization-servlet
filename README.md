@@ -34,7 +34,7 @@ The application.properties looks like below:
 servicevirtualizationdata_home=/usr/service-virtualization-data/servicevirtualizationdata\
 server.servlet.context-path=/banking\
 logging.config=file:/usr/springbootlogging/logback-spring.xml\
-configpath=/config\
+configpath=/config
 
 The logback-spring.xml must be copied to the location as specified by logging.config property in application.properties.
 
