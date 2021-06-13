@@ -65,10 +65,10 @@ mvn install -Pfabric8
 docker run -d -p 8080:8080 -p 5005:5005 -t dannyhui/servicevirtualizationservlet
 
 ## Stop and kill Docker container
-docker ps\
+docker ps
 (Look for the container ID)
 
-dcoker stop <container_id>\
+docker stop <container_id>
 docker rm <container_id>
 
 ## Deploy to OpenShift
